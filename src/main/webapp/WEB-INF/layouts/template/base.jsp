@@ -11,15 +11,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link href="<c:url value="/static/css/bootstrap.min.css" />" rel="stylesheet">
-    
-    <!-- open-iconic -->
-    <link href="<c:url value="/static/css/open-iconic-bootstrap.css" />" rel="stylesheet">
-    
-    <!-- Altri CSS -->
-    <link href="<c:url value="/static/css/main.css" />" rel="stylesheet">
-
     <title><tiles:insertAttribute name="titolo" /></title>
   </head>
   <body>
@@ -80,7 +71,6 @@
     					data-toggle="dropdown"
     					aria-haspopup="true" 
     					aria-expanded="true">
-    					<img class="img-circle" src="<c:url value="/static/images/offline_user.png" />">
     					<span class="caret"></span>
     				</button>
     				<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -95,12 +85,5 @@
     
      <tiles:insertAttribute name="content" /> 
      
-     <tiles:insertAttribute name="footer" />  
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type="text/javascript" src="<c:url value="/static/js/jquery-3.2.1.min.js" />"></script>
-    <script type="text/javascript" src="<c:url value="/static/js/bootstrap.min.js" />"></script>
-     <script type="text/javascript" src="<c:url value="/static/js/main.js" />"></script>
   </body>
 </html>

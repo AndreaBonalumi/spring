@@ -1,12 +1,26 @@
 package com.example.springexample.entity;
 
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Booking {
-
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private LocalDate dateBookingStart;
-    private LocalDate dateBookingEng;
+    @NotNull
+    private LocalDate dateBookingEnd;
+    private int status;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Car car;
 
     public int getId() {
         return id;
@@ -24,12 +38,37 @@ public class Booking {
         this.dateBookingStart = dateBookingStart;
     }
 
-    public LocalDate getDateBookingEng() {
-        return dateBookingEng;
+    public LocalDate getDateBookingEnd() {
+        return dateBookingEnd;
     }
 
-    public void setDateBookingEng(LocalDate dateBookingEng) {
-        this.dateBookingEng = dateBookingEng;
+    public void setDateBookingEnd(LocalDate dateBookingEnd) {
+        this.dateBookingEnd = dateBookingEnd;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
 
 }

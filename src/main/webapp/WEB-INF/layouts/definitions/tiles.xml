@@ -5,20 +5,19 @@
 
 <tiles-definitions>
 
-	<definition name="baseLayout" template="/WEB-INF/layouts/template/base.jsp">
+	<definition name="baseLayout" template="/WEB-INF/view/template/header.jsp">
 		<put-attribute name="titolo" value="" />
 		<put-attribute name="content" value="" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/template/footer.jsp" />
 	</definition>
 	
 	<definition name="index" extends="baseLayout">
-		<put-attribute name="titolo"  value="Benvenuti in AlphaShop" />
-		<put-attribute name="content" value="/WEB-INF/view/welcome.jsp" />
+		<put-attribute name="titolo"  value="Benvenuto" />
+		<put-attribute name="content" value="/WEB-INF/view/index.jsp" />
 	</definition>
 
-	<definition name="cars" extends="baseLayout">
-		<put-attribute name="titolo"  value="Cars" />
-		<put-attribute name="content" value="/WEB-INF/view/cars.jsp" />
+	<definition name="home" extends="baseLayout">
+		<put-attribute name="titolo"  value="Home" />
+		<put-attribute name="content" value="/WEB-INF/view/home.jsp" />
 	</definition>
 
 </tiles-definitions>

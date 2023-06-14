@@ -1,18 +1,32 @@
 package com.example.springexample.entity;
 
-import java.io.Serializable;
+import org.jetbrains.annotations.NotNull;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Car implements Serializable {
-
+@Entity
+public class Car {
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private String brand;
+    @NotNull
     private String model;
+    @NotNull
+    private int year;
+    @NotNull
     private String color;
+    @NotNull
     private LocalDate created;
-    private String description;
     private String link;
-    private LocalDate year;
+    private String description;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car", orphanRemoval = true)
+    private Set<Booking> bookingSet = new HashSet<>();
 
     public int getId() {
         return id;
@@ -38,6 +52,14 @@ public class Car implements Serializable {
         this.model = model;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public String getColor() {
         return color;
     }
@@ -54,14 +76,6 @@ public class Car implements Serializable {
         this.created = created;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLink() {
         return link;
     }
@@ -70,11 +84,20 @@ public class Car implements Serializable {
         this.link = link;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public String getDescription() {
+        return description;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    public Set<Booking> getBookingSet() {
+        return bookingSet;
+    }
+
+    public void setBookingSet(Set<Booking> bookingSet) {
+        this.bookingSet = bookingSet;
+    }
+
 }
