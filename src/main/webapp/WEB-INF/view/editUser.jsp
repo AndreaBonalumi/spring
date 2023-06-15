@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <title>Modifica</title>
@@ -13,13 +15,13 @@
 <body>
 <h1>Modifica dati:</h1>
 
-<form action="UserServlet?action=edit&id=${userProfile.id}" method="post">
-  <label for="firstName">First name: </label><input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" /><br><br>
-  <label for="lastName">Last Name: </label><input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" /><br><br>
-  <label for="password">New password: </label><input id="password" type="password" name="password" placeholder="password" /><br><br>
-  <label for="nPatente">Codice patente: </label><input id="nPatente" type="text" name="nPatente" value="${userProfile.nPatente}" /><br><br>
+<form:form method="post" modelAttribute="userEditRequest">
+  <form:input id="firstName" path="firstName" type="text" name="firstName" value="${userEditRequest.firstName}" /><br><br>
+  <form:input id="lastName" path="lastName" type="text" name="lastName" value="${userEditRequest.lastName}" /><br><br>
+  <form:input id="password" path="password" type="password" name="password" placeholder="password" /><br><br>
+  <form:input id="nPatente" path="nPatente" type="text" name="nPatente" value="${userEditRequest.nPatente}" /><br><br>
   <input type="submit" value="Salva" />
-</form>
+</form:form>
 
 </body>
 </html>

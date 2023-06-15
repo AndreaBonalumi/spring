@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form:form action="" method="post" modelAttribute="loginRequest">
+<form:form method="post" modelAttribute="loginRequest">
     <form:input id="username" type="text" name="username" path="username"/> <br><br>
     <form:input id="password" type="password" name="password" path="password"/><br><br>
     <input type="submit" value="Entra">
