@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/profile/{id}")
     public String getUser(@PathVariable("id") int id, Model model) {
 
         User user = userService.getById(id);

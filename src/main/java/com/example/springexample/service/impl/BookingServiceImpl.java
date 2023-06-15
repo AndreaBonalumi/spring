@@ -4,7 +4,6 @@ import com.example.springexample.entity.Booking;
 import com.example.springexample.repository.BookingDao;
 import com.example.springexample.repository.impl.BookingDaoImpl;
 import com.example.springexample.service.BookingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

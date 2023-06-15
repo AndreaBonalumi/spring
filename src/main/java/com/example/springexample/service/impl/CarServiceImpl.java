@@ -4,7 +4,6 @@ import com.example.springexample.entity.Car;
 import com.example.springexample.repository.CarDao;
 import com.example.springexample.repository.impl.CarDaoImpl;
 import com.example.springexample.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

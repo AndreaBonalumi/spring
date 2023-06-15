@@ -19,7 +19,7 @@ public class CarMapper implements RowMapper<Car> {
             car.setColor(row.getString("color").trim());
             car.setCreated((LocalDate) row.getObject("created"));
             car.setLink(row.getString("link").trim());
-            car.setYear((LocalDate) row.getObject("year"));
+            car.setYear(row.getInt("year"));
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -12,7 +12,6 @@
     <title>Nuova prenotazione</title>
 </head>
 <body>
-<jsp:include page="template/header.jsp" />
 <h1>Prenotazione</h1>
 
 <form action="BookingServlet?action=new" method="post">

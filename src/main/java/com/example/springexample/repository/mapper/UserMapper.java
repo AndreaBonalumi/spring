@@ -20,7 +20,7 @@ public class UserMapper {
             user.setEmail(row.getString("email").trim());
             user.setAdmin(row.getBoolean("admin"));
             user.setCreated((LocalDate) row.getObject("created"));
-            user.setBd((LocalDate) row.getObject("birthday"));
+            user.setBirthday((LocalDate) row.getObject("birthday"));
         } catch (Exception e) {
 
             System.out.println(e);

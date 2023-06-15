@@ -13,9 +13,6 @@
     <title>Home page</title>
 </head>
 <body>
-
-
-<jsp:include page="template/header.jsp" />
 <br/>
 <h1>Benvenuto <c:out value="${userLogger.firstName}" /></h1>
 
