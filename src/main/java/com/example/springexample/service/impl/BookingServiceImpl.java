@@ -13,32 +13,27 @@ public class BookingServiceImpl implements BookingService {
 
     BookingDao bookingDao = new BookingDaoImpl();
     @Override
-    public List<Booking> selAll() {
-        return  bookingDao.getAll();
+    public List<Booking> selAllBookings() {
+        return  bookingDao.getAllBooking();
     }
 
     @Override
-    public Booking selById(int id) {
-        return bookingDao.getById(id);
+    public Booking selBookingById(int id) {
+        return bookingDao.getBookingById(id);
     }
 
     @Override
-    public List<Booking> selByIdUser(int id) {
-        return bookingDao.getAllByUserId(id);
+    public List<Booking> selBookingsByIdUser(int id) {
+        return bookingDao.getAllBookingByUserId(id);
     }
 
     @Override
-    public void delete(Booking booking) {
-        bookingDao.delete(booking);
+    public void deleteBooking(Booking booking) {
+        bookingDao.deleteBooking(booking);
     }
 
     @Override
-    public void insert(Booking booking) {
-        bookingDao.insert(booking);
-    }
-
-    @Override
-    public void edit(Booking booking) {
-        bookingDao.edit(booking);
+    public void manageBooking(Booking booking) {
+        bookingDao.manageBooking(booking);
     }
 }

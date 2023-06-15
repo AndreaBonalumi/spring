@@ -7,12 +7,11 @@ import java.util.List;
 
 public interface UserDao {
 
-    List<User> getAll();
-    User getById(int id);
-    User getByUsPw(String username, String password);
+    List<User> getAllUser();
+    User getUserById(int id);
+    User getUserByUsPw(String username, String password);
     List<User> searchUsers(String field, String value);
-    void edit(User user);
-    void delete(User user);
-    void insert(User user);
+    void deleteUser(User user);
+    void manageUser(User user);
 
 }

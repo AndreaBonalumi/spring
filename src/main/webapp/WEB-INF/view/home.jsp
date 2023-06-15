@@ -17,7 +17,7 @@
 <h1>Benvenuto <c:out value="${userLogger.firstName}" /></h1>
 
 <br><br>
-<c:if test="${userLogger.admin}">
+<c:if test="${not userLogger.admin}">
     <h4>Le tue prenotazioni:</h4> <br><br>
     <a href="booking/new">Nuova prenotazione</a> <br>
 

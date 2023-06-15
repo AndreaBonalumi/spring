@@ -5,10 +5,7 @@ import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -17,34 +14,49 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/profile/{id}")
-    public String getUser(@PathVariable("id") int id, Model model) {
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+    public String getProfileUser(@PathVariable("id") int id, Model model) {
 
-        User user = userService.getById(id);
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return null;
     }
 
-    @RequestMapping("/new")
-    public String newUser(Model model){
-        User user = new User();
-        model.addAttribute("newUserRequest", user);
+    @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
+    public String manageUserRequest(@PathVariable("id") int id, Model model) {
 
-        return "newUser.jsp";
+        User user = new User();
+        if(userService.getUserById(id) != null) {
+            user = userService.getUserById(id);
+        }
+
+        model.addAttribute("user", user);
+
+        return "editUser";
     }
 
-    @PostMapping("/new")
-    public String insertUser(@ModelAttribute("newUserRequest") User user) {
-        userService.insert(user);
+    @PostMapping("manage/{id}")
+    public String manageUser(@ModelAttribute("user") User user) {
 
-        return "home.jsp";
+        userService.manageUser(user);
+
+        return "home";
+    }
+
+    @PostMapping("delete/{id}")
+    public String deleteUser(@PathVariable("id") int id){
+
+        User user = userService.getUserById(id);
+        userService.deleteUser(user);
+
+        return "home";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
-        User user = userService.getById(id);
-        userService.delete(user);
+        User user = userService.getUserById(id);
+        userService.deleteUser(user);
 
-        return "home.jsp";
+        return "home";
     }
 }

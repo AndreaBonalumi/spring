@@ -7,13 +7,8 @@ import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.lang.module.FindException;
 import java.util.List;
 
 @Controller
@@ -30,29 +25,29 @@ public class IndexController
 		User user = new User();
 		model.addAttribute("loginRequest", user);
 		
-		return "/index.jsp";
+		return "index";
 	}
 
 	@PostMapping
-	public String LoginResponse(@ModelAttribute("loginRequest") User user, Model model) {
-		User userLogin = userService.getByLogin(user.getUsername(), user.getPassword());
+	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model) {
+		User userLogin = userService.getUserByLogin(user.getUsername(), user.getPassword());
 
 		if (userLogin != null) {
 
 			model.addAttribute("userLogger", userLogin);
 			if (userLogin.isAdmin()) {
-				List<User> users = userService.getAll();
+				List<User> users = userService.getAllUsers();
 				model.addAttribute("users", users);
 			} else {
-				List<Booking> bookings = bookingService.selByIdUser(userLogin.getId());
+				List<Booking> bookings = bookingService.selBookingsByIdUser(userLogin.getId());
 				model.addAttribute("bookings", bookings);
 			}
 
-			return "/home.jsp";
+			return "home";
 
 		} else {
 			model.addAttribute("error", "Username o password non esistenti");
-			return "index.jsp";
+			return "index";
 		}
 	}
 }

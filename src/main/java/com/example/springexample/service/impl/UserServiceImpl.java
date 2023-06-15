@@ -13,32 +13,27 @@ public class UserServiceImpl implements UserService{
     UserDao userDao = new UserDaoImpl();
 
     @Override
-    public List<User> getAll() {
-        return userDao.getAll();
+    public List<User> getAllUsers() {
+        return userDao.getAllUser();
     }
 
     @Override
-    public User getById(int id) {
-        return userDao.getById(id);
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
     }
 
     @Override
-    public User getByLogin(String username, String password) {
-        return userDao.getByUsPw(username, password);
+    public User getUserByLogin(String username, String password) {
+        return userDao.getUserByUsPw(username, password);
     }
 
     @Override
-    public void insert(User user) {
-        userDao.insert(user);
+    public void manageUser(User user) {
+        userDao.manageUser(user);
     }
 
     @Override
-    public void delete(User user) {
-        userDao.delete(user);
-    }
-
-    @Override
-    public void edit(User user) {
-        userDao.edit(user);
+    public void deleteUser(User user) {
+        userDao.deleteUser(user);
     }
 }

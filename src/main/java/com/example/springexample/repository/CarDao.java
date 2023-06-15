@@ -8,10 +8,9 @@ import java.util.List;
 
 public interface CarDao {
 
-    List<Car> getAll();
-    List<Car> getByDate(LocalDate start, LocalDate end);
-    Car getById(int id);
-    void insert(Car car);
-    void delete(int car);
-    void edit(Car car);
+    List<Car> getAllCar();
+    List<Car> getCarByDate(LocalDate start, LocalDate end);
+    Car getCarById(int id);
+    void manageCar(Car car);
+    void deleteCar(int car);
 }

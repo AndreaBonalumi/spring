@@ -15,11 +15,11 @@
 <body>
 <h1>Modifica dati:</h1>
 
-<form:form method="post" modelAttribute="userEditRequest">
-  <form:input id="firstName" path="firstName" type="text" name="firstName" value="${userEditRequest.firstName}" /><br><br>
-  <form:input id="lastName" path="lastName" type="text" name="lastName" value="${userEditRequest.lastName}" /><br><br>
+<form:form method="post" modelAttribute="userRequest">
+  <form:input id="firstName" path="firstName" type="text" name="firstName" value="${userRequest.firstName}" /><br><br>
+  <form:input id="lastName" path="lastName" type="text" name="lastName" value="${userRequest.lastName}" /><br><br>
   <form:input id="password" path="password" type="password" name="password" placeholder="password" /><br><br>
-  <form:input id="nPatente" path="nPatente" type="text" name="nPatente" value="${userEditRequest.nPatente}" /><br><br>
+  <form:input id="nPatente" path="nPatente" type="text" name="nPatente" value="${userRequest.nPatente}" /><br><br>
   <input type="submit" value="Salva" />
 </form:form>
 

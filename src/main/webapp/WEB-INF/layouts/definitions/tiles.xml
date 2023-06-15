@@ -9,7 +9,7 @@
 		<put-attribute name="titolo" value="" />
 		<put-attribute name="content" value="" />
 	</definition>
-	
+
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="titolo"  value="Benvenuto" />
 		<put-attribute name="content" value="/WEB-INF/view/index.jsp" />
@@ -20,19 +20,9 @@
 		<put-attribute name="content" value="/WEB-INF/view/home.jsp" />
 	</definition>
 
-	<definition name="newUser" extends="baseLayout">
-		<put-attribute name="titolo"  value="Nuovo Utente" />
-		<put-attribute name="content" value="/WEB-INF/view/newUser.jsp" />
-	</definition>
-
 	<definition name="newBooking" extends="baseLayout">
 		<put-attribute name="titolo"  value="Nuova Prenotazione" />
 		<put-attribute name="content" value="/WEB-INF/view/newBooking.jsp" />
-	</definition>
-
-	<definition name="insertCat" extends="baseLayout">
-		<put-attribute name="titolo"  value="Nuova Auto" />
-		<put-attribute name="content" value="/WEB-INF/view/insertCar.jsp" />
 	</definition>
 
 	<definition name="userBooking" extends="baseLayout">

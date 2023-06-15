@@ -17,11 +17,11 @@
 <nav>
   <div class="topnav">
 
-    <a href="UserServlet?action=home">Home</a>
+    <a href="home">Home</a>
     <c:if test="${sessionScope.user.admin}">
-      <a href="CarServlet?action=all">Parco auto</a>
+      <a href="car/all">Parco auto</a>
     </c:if>
-    <a href="profileUser.jsp">Profilo utente</a>
+    <a href="user/profile">Profilo utente</a>
 
   </div>
 </nav>

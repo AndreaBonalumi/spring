@@ -40,8 +40,8 @@
             <td>${macchina.description}</td>
             <td>${macchina.link}</td>
             <td>
-                <a href="CarServlet?action=edit&id=${macchina.id}"><button type="button">Modifica</button></a>
-                <a href="CarServlet?action=delete&id=${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
+                <a href="edit&id=${macchina.id}"><button type="button">Modifica</button></a>
+                <a href="delete&id=${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
             </td>
 
         </tr>

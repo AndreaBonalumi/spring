@@ -13,7 +13,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Car> getAll() {
+    public List<Car> getAllCar() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             String JPQL = "FROM Car";
             return session.createQuery(JPQL).getResultList();
@@ -25,12 +25,12 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public List<Car> getByDate(LocalDate start, LocalDate end) {
+    public List<Car> getCarByDate(LocalDate start, LocalDate end) {
         return null;
     }
 
     @Override
-    public Car getById(int id) {
+    public Car getCarById(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             String JPQL = "FROM Car WHERE id = :id";
             return (Car) session.createQuery(JPQL).setParameter("id", id).getSingleResult();
@@ -42,7 +42,7 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public void insert(Car car) {
+    public void manageCar(Car car) {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -57,26 +57,11 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public void delete(int car) {
+    public void deleteCar(int car) {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(car);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void edit(Car car) {
-        Transaction transaction = null;
-        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.merge(car);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

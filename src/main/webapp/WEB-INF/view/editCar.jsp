@@ -13,16 +13,16 @@
     <title>Modifica</title>
 </head>
 <body>
-<h1>Modifica ${carEditRequest.brand} ${carEditRequest.model}</h1><br>
+<h1>Modifica ${carRequest.brand} ${carRequest.model}</h1><br>
 
-<form:form method="post" modelAttribute="carEditRequest">
+<form:form method="post" modelAttribute="carRequest">
 
-    <span>Marca: ${carEditRequest.brand}</span><br><br>
-    <span>Modello: ${carEditRequest.model}</span><br><br>
-    <span>Anno: ${carEditRequest.year}</span><br><br>
-    <form:input id="color" path="color" type="text" name="color" placeholder="color" value="${car.color}" required="true" /><br><br>
-    <form:input id="description" path="description" type="text" name="description" placeholder="description" value="${car.description}" /><br><br>
-    <form:input id="link" path="link" type="text" name="link" placeholder="link" value="${car.link}" /><br><br>
+    <span>Marca: ${carRequest.brand}</span><br><br>
+    <span>Modello: ${carRequest.model}</span><br><br>
+    <span>Anno: ${carRequest.year}</span><br><br>
+    <form:input id="color" path="color" type="text" name="color" placeholder="color" value="${carRequest.color}" required="true" /><br><br>
+    <form:input id="description" path="description" type="text" name="description" placeholder="description" value="${carRequest.description}" /><br><br>
+    <form:input id="link" path="link" type="text" name="link" placeholder="link" value="${carRequest.link}" /><br><br>
     <input type="submit" value="Salva">
 </form:form>
 </body>

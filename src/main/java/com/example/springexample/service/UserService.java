@@ -5,10 +5,9 @@ import com.example.springexample.entity.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> getAll();
-    User getById(int id);
-    User getByLogin(String username, String password);
-    void insert(User user);
-    void delete(User user);
-    void edit(User user);
+    List<User> getAllUsers();
+    User getUserById(int id);
+    User getUserByLogin(String username, String password);
+    void manageUser(User user);
+    void deleteUser(User user);
 }

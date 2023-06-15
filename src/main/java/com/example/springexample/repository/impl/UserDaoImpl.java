@@ -11,7 +11,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> getAll() {
+    public List<User> getAllUser() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             String JPQL = "FROM User";
             return session.createQuery(JPQL).getResultList();
@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(int id) {
+    public User getUserById(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()){
             String JPQL = "FROM User WHERE id = :id";
             return (User) session.createQuery(JPQL).setParameter("id", id).getSingleResult();
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getByUsPw(String username, String password) {
+    public User getUserByUsPw(String username, String password) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             String JPQL = "from User where username = :username and password = :password";
             return  (User) session.createQuery(JPQL).setParameter("username", username).setParameter("password", password).getSingleResult();
@@ -58,23 +58,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void edit(User user) {
-        Transaction transaction = null;
-        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.merge(user);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void delete(User user) {
+    public void deleteUser(User user) {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -89,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insert(User user) {
+    public void manageUser(User user) {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();

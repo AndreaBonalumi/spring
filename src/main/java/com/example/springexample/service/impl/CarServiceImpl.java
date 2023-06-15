@@ -14,23 +14,23 @@ public class CarServiceImpl implements CarService {
     CarDao carDao = new CarDaoImpl();
 
     @Override
-    public List<Car> selAll() {
-        return carDao.getAll();
+    public List<Car> selAllCars() {
+        return carDao.getAllCar();
     }
 
     @Override
-    public Car getById(int id) { return carDao.getById(id); }
+    public Car getCarById(int id) { return carDao.getCarById(id); }
 
     @Override
-    public List<Car> getByDate(LocalDate start, LocalDate end) { return carDao.getByDate(start, end); }
+    public List<Car> getCarsByDate(LocalDate start, LocalDate end) { return carDao.getCarByDate(start, end); }
 
     @Override
-    public void insertCar(Car car) {
-        carDao.insert(car);
+    public void manageCar(Car car) {
+        carDao.manageCar(car);
     }
 
     @Override
     public void deleteCar(int id) {
-        carDao.delete(id);
+        carDao.deleteCar(id);
     }
 }
