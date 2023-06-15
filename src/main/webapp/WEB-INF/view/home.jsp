@@ -44,8 +44,8 @@
                     <td>
                         <c:if test="${booking.status != 2 && today < booking.dateBookingStart.minusDays(2)}">
 
-                            <a href="booking/edit?id=${booking.id}"><button type="button">Modifica</button></a>
-                            <a href="booking/cancella?id=${booking.id}"><button type="button" onclick="window.alert('prenotazione cancellalta')">Cancella</button></a>
+                            <a href="booking/edit/${booking.id}"><button type="button">Modifica</button></a>
+                            <a href="booking/delete/${booking.id}"><button type="button" onclick="window.alert('prenotazione cancellalta')">Cancella</button></a>
 
                         </c:if>
                     </td>
@@ -58,7 +58,7 @@
 
 <c:if test="${userLogger.admin}">
     <h4>Lista utenti:</h4> <br><br>
-    <form action="UserServlet?action=filter" method="post">
+    <form action="filter" method="get">
         <label for="filter">Filtra: </label>
         <select name="fieldSearch">
             <option name="firstName" value="firstName">First name</option>
@@ -69,7 +69,7 @@
         <input id="filter" type="text" placeholder="cerca.." name="filter" />
         <input type="submit" value="cerca" />
     </form>
-    <a href="newUser.jsp">Nuovo Utente</a> <br>
+    <a href="user/manage">Nuovo Utente</a> <br>
 
     <table>
         <tr>
@@ -83,15 +83,15 @@
         </tr>
         <c:forEach var="tempUser" items="${users}">
             <tr>
-                <td><a href="user/detail?id=${tempUser.id}">${tempUser.id}</a></td>
+                <td><a href="user/detail/${tempUser.id}">${tempUser.id}</a></td>
                 <td>${tempUser.username}</td>
                 <td>${tempUser.email}</td>
                 <td>${tempUser.created}</td>
                 <td>${tempUser.nPatente}</td>
                 <td>${tempUser.admin}</td>
                 <td>
-                    <a href="user/edit?id=${tempUser.id}"><button type="button">Modifica</button></a>
-                    <a href="user/delete?id=${tempUser.id}"><button type="button" onclick="window.alert('Utente cancellato')">Cancella</button> </a>
+                    <a href="user/edit/${tempUser.id}"><button type="button">Modifica</button></a>
+                    <a href="user/delete/${tempUser.id}"><button type="button" onclick="window.alert('Utente cancellato')">Cancella</button> </a>
                 </td>
 
             </tr>

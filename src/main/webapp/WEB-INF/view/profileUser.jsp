@@ -16,14 +16,14 @@
 <br><br>
 <h1>I tuoi dati</h1> <br><br>
 
-<p>Nome: ${sessionScope.user.firstName}</p> <br>
-<p>Cognome: ${sessionScope.user.lastName}</p> <br>
-<p>Data di nascita: ${sessionScope.user.birthday}</p> <br>
-<p>Email: ${sessionScope.user.email}</p><br>
-<p>Username: ${sessionScope.user.username}</p><br>
-<p>Numero patente: ${sessionScope.user.nPatente}</p><br>
+<p>Nome: ${user.firstName}</p> <br>
+<p>Cognome: ${user.lastName}</p> <br>
+<p>Data di nascita: ${user.birthday}</p> <br>
+<p>Email: ${user.email}</p><br>
+<p>Username: ${user.username}</p><br>
+<p>Numero patente: ${user.nPatente}</p><br>
 
 
-<a href="UserServlet?action=edit&id=${sessionScope.user.id}"><button type="button">Modifica i tuoi dati</button></a>
+<a href="manage/${sessionScope.user.id}"><button type="button">Modifica i tuoi dati</button></a>
 </body>
 </html>

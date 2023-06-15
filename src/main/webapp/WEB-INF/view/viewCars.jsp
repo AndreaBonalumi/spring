@@ -18,7 +18,7 @@
 <h1>Lista Macchine</h1>
 
 <br>
-<a href="insertCar.jsp">Inserisci nuova auto</a>
+<a href="manage">Inserisci nuova auto</a>
 
 <!-- <a href=""> Inserici nuova macchina </a> -->
 <table>
@@ -40,8 +40,8 @@
             <td>${macchina.description}</td>
             <td>${macchina.link}</td>
             <td>
-                <a href="edit&id=${macchina.id}"><button type="button">Modifica</button></a>
-                <a href="delete&id=${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
+                <a href="manage/${macchina.id}"><button type="button">Modifica</button></a>
+                <a href="delete/${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
             </td>
 
         </tr>

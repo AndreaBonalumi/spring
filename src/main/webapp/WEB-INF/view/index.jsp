@@ -10,8 +10,8 @@
 <body>
 
 <form:form method="post" modelAttribute="loginRequest">
-    <span>username: </span><form:input id="username" type="text" name="username" path="username"/> <br><br>
-    <span>password: </span><form:input id="password" type="password" name="password" path="password"/><br><br>
+    <span>username: </span><form:input id="username" path="username"/> <br><br>
+    <span>password: </span><form:password id="password" path="password"/><br><br>
     <input type="submit" value="Entra">
 </form:form>
 <c:if test="${error != null}">

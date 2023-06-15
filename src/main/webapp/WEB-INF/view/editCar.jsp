@@ -17,13 +17,14 @@
 
 <form:form method="post" modelAttribute="carRequest">
 
-    <span>Marca: ${carRequest.brand}</span><br><br>
-    <span>Modello: ${carRequest.model}</span><br><br>
-    <span>Anno: ${carRequest.year}</span><br><br>
-    <form:input id="color" path="color" type="text" name="color" placeholder="color" value="${carRequest.color}" required="true" /><br><br>
-    <form:input id="description" path="description" type="text" name="description" placeholder="description" value="${carRequest.description}" /><br><br>
-    <form:input id="link" path="link" type="text" name="link" placeholder="link" value="${carRequest.link}" /><br><br>
+    <span>Marca: </span> <form:input path="brand" placeholder="color" /><br><br>
+    <span>Modello: </span> <form:input path="model" placeholder="color" /><br><br>
+    <span>Colore: </span> <form:input path="color" placeholder="color" /><br><br>
+    <span>Anno: </span> <form:input path="year" placeholder="color" /><br><br>
+    <span>Descrizione: </span> <form:input path="description" placeholder="description" /><br><br>
+    <span>Link: </span> <form:input path="link" placeholder="link" /><br><br>
     <input type="submit" value="Salva">
+
 </form:form>
 </body>
 </html>

@@ -16,17 +16,17 @@
 <body>
 <h1>Prenotazione</h1>
 
-<form action="BookingServlet?action=new" method="post">
+<form:form method="get" modelAttribute="booking">
     <label for="start">Data di inizio della prenotazione </label>
-    <input type="date" name="start" value="${param.start}" min="<%= java.time.LocalDate.now().plusDays(2) %>" max="${param.end}" /> <br><br>
+    <from:input type="date" path="dateBookingStart" min="<%= java.time.LocalDate.now().plusDays(2) %>" max="${param.end}" /> <br><br>
 
     <label for="end">Data di fine della prenotazione </label>
-    <input type="date" name="end" value="${param.end}" min="${param.start}"/><br><br>
+    <form:input type="date" path="dateBookingEnd" name="end" min="${param.start}"/><br><br>
     <input type="submit" value="cerca auto disponibili">
-</form><br><br>
-<form action="BookingServlet?action=book" method="post">
-    <input hidden="true" id="start" type="date" name="start" value="${param.start}" />
-    <input hidden="true" id="end" type="date" name="end" value="${param.end}" />
+</form:form><br><br>
+<form:form method="post" modelAttribute="car">
+    <form:input hidden="true" path="dateBookingStart" type="date" />
+    <form:input hidden="true" path="dateBokkingEnd" type="date" />
     <c:if test="${carsDate != null}">
         <table>
             <thead>
@@ -44,7 +44,7 @@
                 <c:forEach var="car" items="${carsDate}">
                     <tr>
                         <td>
-                            <input type="radio" name="carSelected" value="${car.id}">
+                            <form:input type="radio" path="id" />
                         </td>
                         <td>${car.brand}</td>
                         <td>${car.model}</td>
@@ -57,7 +57,7 @@
         </table>
         <input type="submit" value="Prenota">
     </c:if>
-</form>
+</form:form>
 </body>
 </html>
 
