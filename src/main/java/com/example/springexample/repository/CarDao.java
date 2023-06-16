@@ -12,5 +12,5 @@ public interface CarDao {
     List<Car> getCarByDate(LocalDate start, LocalDate end);
     Car getCarById(int id);
     void manageCar(Car car);
-    void deleteCar(int car);
+    void deleteCar(Car car);
 }

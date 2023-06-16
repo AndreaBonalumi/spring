@@ -17,16 +17,15 @@
 <h1>Prenotazione</h1>
 
 <form:form method="get" modelAttribute="booking">
-    <label for="start">Data di inizio della prenotazione </label>
-    <from:input type="date" path="dateBookingStart" min="<%= java.time.LocalDate.now().plusDays(2) %>" max="${param.end}" /> <br><br>
+    <label>Data di inizio della prenotazione </label>
+    <form:input type="date" path="dateBookingStart" min="<%= java.time.LocalDate.now().plusDays(2) %>" max="${param.end}" /> <br><br>
 
     <label for="end">Data di fine della prenotazione </label>
     <form:input type="date" path="dateBookingEnd" name="end" min="${param.start}"/><br><br>
     <input type="submit" value="cerca auto disponibili">
 </form:form><br><br>
 <form:form method="post" modelAttribute="car">
-    <form:input hidden="true" path="dateBookingStart" type="date" />
-    <form:input hidden="true" path="dateBokkingEnd" type="date" />
+
     <c:if test="${carsDate != null}">
         <table>
             <thead>

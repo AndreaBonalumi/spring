@@ -57,7 +57,7 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public void deleteCar(int car) {
+    public void deleteCar(Car car) {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();

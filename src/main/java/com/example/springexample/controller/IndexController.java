@@ -28,7 +28,21 @@ public class IndexController
 		return "index";
 	}
 
-	@PostMapping
+	@GetMapping("home")
+	public String viewHome(@ModelAttribute("userLogger") User user, Model model){
+
+		if (user.isAdmin()) {
+			List<User> users = userService.getAllUsers();
+			model.addAttribute("users", users);
+		} else {
+			List<Booking> bookings = bookingService.selBookingsByIdUser(user.getId());
+			model.addAttribute("bookings", bookings);
+		}
+
+		return "home";
+	}
+
+	@PostMapping("home")
 	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model) {
 		User userLogin = userService.getUserByLogin(user.getUsername(), user.getPassword());
 

@@ -2,8 +2,10 @@ package com.example.springexample.controller;
 
 import com.example.springexample.entity.Booking;
 import com.example.springexample.entity.Car;
-import com.example.springexample.repository.impl.BookingDaoImpl;
 import com.example.springexample.repository.impl.CarDaoImpl;
+import com.example.springexample.service.BookingService;
+import com.example.springexample.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +17,10 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController {
 
-    BookingDaoImpl bookingDao;
-    CarDaoImpl carDao;
+    @Autowired
+    BookingService bookingService;
+    @Autowired
+    CarService carService;
 
     @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
     public String newBooking(Model model){
@@ -33,7 +37,7 @@ public class BookingController {
         if (car == null) {
             booking.setDateBookingStart((LocalDate) booking.getDateBookingStart());
             booking.setDateBookingEnd((LocalDate) booking.getDateBookingEnd());
-            List<Car> cars = carDao.getCarByDate(booking.getDateBookingStart(), booking.getDateBookingEnd());
+            List<Car> cars = carService.getCarsByDate(booking.getDateBookingStart(), booking.getDateBookingEnd());
 
             model.addAttribute("cars", cars);
 
@@ -42,9 +46,9 @@ public class BookingController {
         } else {
             booking.setStatus(0);
             booking.setCar(car);
-            bookingDao.manageBooking(booking);
+            bookingService.manageBooking(booking);
 
-            return "home";
+            return "redirect:/springExample_war_exploded/home";
         }
     }
 

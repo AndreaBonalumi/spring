@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,9 @@ public class CarController {
     public String getAllCar(Model model) {
         recordset = carService.selAllCars();
 
+        int id = -1;
         model.addAttribute("cars", recordset);
+        model.addAttribute("id", id);
 
         return "viewCars";
     }
@@ -40,19 +43,21 @@ public class CarController {
         return "editCar";
     }
 
-    @PostMapping("mange/{id}")
+    @PostMapping("manage/{id}")
     public String manageCar(@ModelAttribute("carRequest") Car car) {
 
+        car.setCreated(LocalDate.now());
         carService.manageCar(car);
 
-        return "home";
+        return "redirect:/springExample_war_exploded/home";
     }
 
-    @PostMapping("delete/{id}")
-    public String deleteCar(@PathVariable("id") int id) {
+    @PostMapping("delete")
+    public String deleteCar(@ModelAttribute("id") int id) {
 
-        carService.deleteCar(id);
+        Car car = carService.getCarById(id);
+        carService.deleteCar(car);
 
-        return "home";
+        return "redirect:/car/all";
     }
 }

@@ -36,7 +36,7 @@
 	</definition>
 
 	<definition name="profileUser" extends="baseLayout">
-		<put-attribute name="titolo"  value="Profilo" />
+		<put-attribute name="titolo"  value="Profilo Utente" />
 		<put-attribute name="content" value="/WEB-INF/view/profileUser.jsp" />
 	</definition>
 
@@ -46,7 +46,7 @@
 	</definition>
 
 	<definition name="editUser" extends="baseLayout">
-		<put-attribute name="titolo"  value="Modifica Profilo" />
+		<put-attribute name="titolo"  value="User" />
 		<put-attribute name="content" value="/WEB-INF/view/editUser.jsp" />
 	</definition>
 

@@ -10,7 +10,7 @@ public interface CarService {
     Car getCarById(int id);
     List<Car> getCarsByDate(LocalDate start, LocalDate end);
     void manageCar(Car car);
-    void deleteCar(int id);
+    void deleteCar(Car car);
     // void editCar(Car car);
 
 }

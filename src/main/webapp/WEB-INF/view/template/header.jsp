@@ -17,11 +17,11 @@
 <nav>
   <div class="topnav">
 
-    <a href="home">Home</a>
-    <c:if test="${sessionScope.user.admin}">
-      <a href="car/all">Parco auto</a>
+    <a href="/springExample_war_exploded/home">Home</a>
+    <c:if test="${userLogger.admin}">
+      <a href="/springExample_war_exploded/car/all">Parco auto</a>
     </c:if>
-    <a href="user/profile">Profilo utente</a>
+    <a href="/springExample_war_exploded/user/profile">Profilo utente</a>
 
   </div>
 </nav>
@@ -29,8 +29,6 @@
 <tiles:insertAttribute name="content" />
 </body>
 </html>
-
-
 
 <style>
   .topnav {

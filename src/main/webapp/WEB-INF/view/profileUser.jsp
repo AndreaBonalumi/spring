@@ -1,4 +1,4 @@
-<%@ page import="entity.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Si2001
   Date: 30/05/2023
@@ -14,7 +14,7 @@
 </head>
 <body>
 <br><br>
-<h1>I tuoi dati</h1> <br><br>
+<h1>Dati</h1> <br><br>
 
 <p>Nome: ${user.firstName}</p> <br>
 <p>Cognome: ${user.lastName}</p> <br>

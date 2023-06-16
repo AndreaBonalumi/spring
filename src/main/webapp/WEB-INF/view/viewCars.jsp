@@ -18,7 +18,7 @@
 <h1>Lista Macchine</h1>
 
 <br>
-<a href="manage">Inserisci nuova auto</a>
+<a href="manage/-1">Inserisci nuova auto</a>
 
 <!-- <a href=""> Inserici nuova macchina </a> -->
 <table>

@@ -69,7 +69,7 @@
         <input id="filter" type="text" placeholder="cerca.." name="filter" />
         <input type="submit" value="cerca" />
     </form>
-    <a href="user/manage">Nuovo Utente</a> <br>
+    <a href="user/manage/-1">Nuovo Utente</a> <br>
 
     <table>
         <tr>
@@ -90,7 +90,7 @@
                 <td>${tempUser.nPatente}</td>
                 <td>${tempUser.admin}</td>
                 <td>
-                    <a href="user/edit/${tempUser.id}"><button type="button">Modifica</button></a>
+                    <a href="user/manage/${tempUser.id}"><button type="button">Modifica</button></a>
                     <a href="user/delete/${tempUser.id}"><button type="button" onclick="window.alert('Utente cancellato')">Cancella</button> </a>
                 </td>
 
