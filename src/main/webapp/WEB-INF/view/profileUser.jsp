@@ -24,6 +24,6 @@
 <p>Numero patente: ${user.nPatente}</p><br>
 
 
-<a href="manage/${sessionScope.user.id}"><button type="button">Modifica i tuoi dati</button></a>
+<a href="manage/${user.id}"><button type="button">Modifica i tuoi dati</button></a>
 </body>
 </html>

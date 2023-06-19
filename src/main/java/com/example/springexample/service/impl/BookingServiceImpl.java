@@ -1,11 +1,13 @@
 package com.example.springexample.service.impl;
 
 import com.example.springexample.entity.Booking;
+import com.example.springexample.entity.Car;
 import com.example.springexample.repository.BookingDao;
 import com.example.springexample.repository.impl.BookingDaoImpl;
 import com.example.springexample.service.BookingService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,6 +28,9 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> selBookingsByIdUser(int id) {
         return bookingDao.getAllBookingByUserId(id);
     }
+
+    @Override
+    public List<Car> getBookingByDate(LocalDate start, LocalDate end) {return bookingDao.getBookingByDate(start, end); }
 
     @Override
     public void deleteBooking(Booking booking) {

@@ -16,47 +16,48 @@
 <body>
 <h1>Prenotazione</h1>
 
-<form:form method="get" modelAttribute="booking">
-    <label>Data di inizio della prenotazione </label>
-    <form:input type="date" path="dateBookingStart" min="<%= java.time.LocalDate.now().plusDays(2) %>" max="${param.end}" /> <br><br>
+<form:form action="/springExample_war_exploded/booking/completeBooking" method="get" modelAttribute="bookingRequest">
+    <label for="start">Data di inizio della prenotazione </label>
+    <form:input id="start" type="date" path="dateBookingStart" name="start"/> <br><br>
 
     <label for="end">Data di fine della prenotazione </label>
-    <form:input type="date" path="dateBookingEnd" name="end" min="${param.start}"/><br><br>
+    <form:input id="end" type="date" path="dateBookingEnd" name="end"/><br><br>
     <input type="submit" value="cerca auto disponibili">
 </form:form><br><br>
-<form:form method="post" modelAttribute="car">
+<c:if test="${cars != null}">
 
-    <c:if test="${carsDate != null}">
-        <table>
-            <thead>
-            <tr>
-                <th></th>
-                <th>Marca</th>
-                <th>Modello</th>
-                <th>Colore</th>
-                <th>Descrizione</th>
-                <th>Link</th>
-            </tr>
-            </thead>
+    <form:form method="post" modelAttribute="completeBooking">
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Marca</th>
+                    <th>Modello</th>
+                    <th>Colore</th>
+                    <th>Descrizione</th>
+                    <th>Link</th>
+                </tr>
+                </thead>
 
-            <tbody>
-                <c:forEach var="car" items="${carsDate}">
-                    <tr>
-                        <td>
-                            <form:input type="radio" path="id" />
-                        </td>
-                        <td>${car.brand}</td>
-                        <td>${car.model}</td>
-                        <td>${car.color}</td>
-                        <td>${car.description}</td>
-                        <td>${car.link}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <input type="submit" value="Prenota">
-    </c:if>
-</form:form>
+                <tbody>
+                    <c:forEach var="car" items="${cars}">
+                        <tr>
+                            <td>
+                                <form:radiobutton path="car" value="${car}" />
+                            </td>
+                            <td>${car.brand}</td>
+                            <td>${car.model}</td>
+                            <td>${car.color}</td>
+                            <td>${car.description}</td>
+                            <td>${car.link}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <input type="submit" value="Prenota">
+    </form:form>
+</c:if>
+
 </body>
 </html>
 

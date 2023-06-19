@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<User> searchUser(String field, String searchText) {
+        return userDao.searchUsers(field, searchText);
+    }
+
+    @Override
     public User getUserById(int id) {
         return userDao.getUserById(id);
     }

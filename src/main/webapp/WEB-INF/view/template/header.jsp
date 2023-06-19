@@ -18,7 +18,7 @@
   <div class="topnav">
 
     <a href="/springExample_war_exploded/home">Home</a>
-    <c:if test="${userLogger.admin}">
+    <c:if test="${sessionScope.userLogger.admin}">
       <a href="/springExample_war_exploded/car/all">Parco auto</a>
     </c:if>
     <a href="/springExample_war_exploded/user/profile">Profilo utente</a>

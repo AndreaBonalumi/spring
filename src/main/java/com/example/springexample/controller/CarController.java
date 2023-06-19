@@ -49,7 +49,7 @@ public class CarController {
         car.setCreated(LocalDate.now());
         carService.manageCar(car);
 
-        return "redirect:/springExample_war_exploded/home";
+        return "redirect:/car/all";
     }
 
     @PostMapping("delete")

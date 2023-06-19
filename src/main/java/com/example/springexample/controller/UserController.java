@@ -1,13 +1,17 @@
 package com.example.springexample.controller;
 
+import com.example.springexample.entity.Booking;
 import com.example.springexample.entity.User;
+import com.example.springexample.service.BookingService;
 import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -15,13 +19,54 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    BookingService bookingService;
 
-    @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-    public String getProfileUser(@PathVariable("id") int id, Model model) {
+    @RequestMapping(value = "profile", method = RequestMethod.GET)
+    public String getProfileUser(HttpSession session, Model model) {
 
-        User user = userService.getUserById(id);
+        User user = (User) session.getAttribute("userLogger");
         model.addAttribute("user", user);
         return "profileUser";
+    }
+
+    @GetMapping("detail/{id}")
+    public String getBookingsByUser(@PathVariable("id") int id, Model model) {
+
+        List<Booking> bookings = bookingService.selBookingsByIdUser(id);
+        User user = userService.getUserById(id);
+
+        model.addAttribute("bookings", bookings);
+        model.addAttribute("userBooking", user);
+
+        return "userBooking";
+    }
+
+    @GetMapping("detail/{id}/{status}/{idBooking}")
+    public String changeStatusBooking(@PathVariable("id") int id,
+                                      @PathVariable("status") String status,
+                                      @PathVariable("idBooking") int idBooking) {
+
+        Booking booking = bookingService.selBookingById(idBooking);
+        bookingService.deleteBooking(booking);
+        if (status.equals("approve")) {
+            booking.setStatus(1);
+        } else {
+            booking.setStatus(2);
+        }
+        bookingService.manageBooking(booking);
+
+        return "redirect:user/detail/" + id;
+    }
+
+    @GetMapping("filter")
+    public String FilterUsers(@RequestParam("field") String field, @RequestParam("filter") String searchText, Model model) {
+
+        List<User> users = userService.searchUser(field, searchText);
+
+        model.addAttribute("users", users);
+
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
@@ -44,15 +89,15 @@ public class UserController {
         user.setCreated(LocalDate.now());
         userService.manageUser(user);
 
-        return "redirect:/springExample_war_exploded/home";
+        return "redirect:/home";
     }
 
-    @PostMapping("delete/{id}")
+    @GetMapping("delete/{id}")
     public String deleteUser(@PathVariable("id") int id){
 
         User user = userService.getUserById(id);
         userService.deleteUser(user);
 
-        return "redirect:/springExample_war_exploded/home";
+        return "redirect:/home";
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,9 @@ public class IndexController
 	}
 
 	@GetMapping("home")
-	public String viewHome(@ModelAttribute("userLogger") User user, Model model){
+	public String viewHome(Model model, HttpSession session){
+
+		User user = (User) session.getAttribute("userLogger");
 
 		if (user.isAdmin()) {
 			List<User> users = userService.getAllUsers();
@@ -43,13 +46,16 @@ public class IndexController
 	}
 
 	@PostMapping("home")
-	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model) {
+	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model, HttpSession session) {
 		User userLogin = userService.getUserByLogin(user.getUsername(), user.getPassword());
 
 		if (userLogin != null) {
+			session.setAttribute("userLogger", userLogin);
 
 			model.addAttribute("userLogger", userLogin);
 			if (userLogin.isAdmin()) {
+				Object filter = new Object();
+				model.addAttribute("filter", filter);
 				List<User> users = userService.getAllUsers();
 				model.addAttribute("users", users);
 			} else {

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUsers();
+    List<User> searchUser(String field, String searchText);
     User getUserById(int id);
     User getUserByLogin(String username, String password);
     void manageUser(User user);

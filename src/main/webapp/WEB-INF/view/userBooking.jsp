@@ -36,8 +36,8 @@
                 <td>${tempbooking.car.model}</td>
                 <td>${tempbooking.status}</td>
                 <td>
-                    <a href="approve/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione approvata')">Approva</button> </a>
-                    <a href="decline/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione rifiutata')">Rifiuta</button> </a>
+                    <a href="${userBooking.id}/approve/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione approvata')">Approva</button> </a>
+                    <a href="${userBooking.id}/decline/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione rifiutata')">Rifiuta</button> </a>
                 </td>
             </tr>
         </c:forEach>
