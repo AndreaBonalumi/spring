@@ -19,8 +19,6 @@ public class UserDaoImpl implements UserDao {
     @SuppressWarnings("unchecked")
     public List<User> getAllUser() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "FROM User";
-            return session.createQuery(JPQL).getResultList();*/
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
             Root<User> root = criteriaQuery.from(User.class);
@@ -37,8 +35,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()){
-            /*String JPQL = "FROM User WHERE id = :id";
-            return (User) session.createQuery(JPQL).setParameter("id", id).getSingleResult();*/
 
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -57,8 +53,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByUsPw(String username, String password) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "from User where username = :username and password = :password";
-            return  (User) session.createQuery(JPQL).setParameter("username", username).setParameter("password", password).getSingleResult();*/
 
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -79,8 +73,6 @@ public class UserDaoImpl implements UserDao {
     @SuppressWarnings("unchecked")
     public List<User> searchUsers (String field, String value) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JQPL = "from User where " + field + " like :value";
-            return session.createQuery(JQPL).setParameter("value", "%" + value + "%").getResultList();*/
 
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);

@@ -23,8 +23,6 @@ public class BookingDaoImpl implements BookingDao {
     @SuppressWarnings("unchecked")
     public List<Booking> getAllBooking() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "FROM Booking";
-            return session.createQuery(JPQL).getResultList();*/
 
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Booking> criteriaQuery = criteriaBuilder.createQuery(Booking.class);
@@ -43,8 +41,6 @@ public class BookingDaoImpl implements BookingDao {
     @SuppressWarnings("unchecked")
     public List<Booking> getAllBookingByUserId(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "from Booking b where b.user.id = :id";
-            return session.createQuery(JPQL).setParameter("id", id).getResultList();*/
             User user = userService.getUserById(id);
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Booking> criteriaQuery = criteriaBuilder.createQuery(Booking.class);
@@ -62,9 +58,6 @@ public class BookingDaoImpl implements BookingDao {
     @Override
     public Booking getBookingById(int id) {
         try(Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "from Booking where id=:id";
-            return (Booking) session.createQuery(JPQL).setParameter("id", id).getSingleResult();*/
-
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Booking> criteriaQuery = criteriaBuilder.createQuery(Booking.class);
             Root<Booking> root = criteriaQuery.from(Booking.class);

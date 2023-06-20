@@ -20,8 +20,6 @@ public class CarDaoImpl implements CarDao {
     @SuppressWarnings("unchecked")
     public List<Car> getAllCar() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "FROM Car";
-            return session.createQuery(JPQL).getResultList();*/
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
             Root<Car> root = criteriaQuery.from(Car.class);
@@ -43,8 +41,6 @@ public class CarDaoImpl implements CarDao {
     @Override
     public Car getCarById(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            /*String JPQL = "FROM Car WHERE id = :id";
-            return (Car) session.createQuery(JPQL).setParameter("id", id).getSingleResult();*/
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
             Root<Car> root = criteriaQuery.from(Car.class);

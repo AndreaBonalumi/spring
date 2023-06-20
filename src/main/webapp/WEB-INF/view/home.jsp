@@ -47,8 +47,11 @@
                     <td>
                         <c:if test="${booking.status != 2 && today < booking.dateBookingStart.minusDays(2)}">
 
-                            <a href="booking/manage/${booking.id}?start=${booking.dateBookingStart}&end=${booking.dateBookingEnd}"><button type="button">Modifica</button></a>
-                            <a href="booking/delete/${booking.id}"><button type="button" onclick="window.alert('prenotazione cancellalta')">Cancella</button></a>
+                            <a href="booking/manage/${booking.id}"><button type="button">Modifica</button></a>
+                            <a href="booking/delete/${booking.id}">
+                                <button type="button" onclick="window.alert('prenotazione cancellalta')">
+                                    Cancella
+                                </button></a>
 
                         </c:if>
                     </td>
