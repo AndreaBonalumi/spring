@@ -24,6 +24,10 @@
   <span>Password: </span> <form:password path="password" placeholder="password" /><br><br>
   <span>Data di nascita: </span> <form:input path="birthday" type="date" /><br><br>
   <span>Numero Patente: </span> <form:input path="nPatente" /><br><br>
+  <form:errors path="firstName" cssClass="error" /><br>
+  <form:errors path="lastName" cssClass="error" /><br>
+  <form:errors path="password" cssClass="error" /><br>
+  <form:errors path="nPatente" cssClass="error" /><br>
   <input type="submit" value="Salva" />
 
 </form:form>
