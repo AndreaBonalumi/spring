@@ -17,6 +17,7 @@
 
 <form:form method="post" modelAttribute="carRequest">
 
+    <form:input path="id" hidden="true" />
     <span>Marca: </span> <form:input path="brand" placeholder="color" /><br><br>
     <span>Modello: </span> <form:input path="model" placeholder="color" /><br><br>
     <span>Colore: </span> <form:input path="color" placeholder="color" /><br><br>

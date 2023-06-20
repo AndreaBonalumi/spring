@@ -17,6 +17,7 @@
 
 <form:form method="post" modelAttribute="userRequest">
 
+  <form:input path="id" hidden="true" />
   <span>Nome: </span> <form:input path="firstName" placeholder="Nome" /><br><br>
   <span>Cognome: </span> <form:input path="lastName" placeholder="Cognome" /><br><br>
   <span>Username: </span> <form:input path="username" placeholder="username" /><br><br>

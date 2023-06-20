@@ -123,7 +123,7 @@ public class BookingDaoImpl implements BookingDao {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(booking);
+            session.saveOrUpdate(booking);
             transaction.commit();
 
         } catch (Exception e) {

@@ -17,6 +17,7 @@
 <h1>Prenotazione</h1>
 
 <form:form action="/springExample_war_exploded/booking/completeBooking" method="get" modelAttribute="bookingRequest">
+    <form:input path="id" hidden="true"/>
     <label for="start">Data di inizio della prenotazione </label>
     <form:input id="start" type="date" path="dateBookingStart" name="start"/> <br><br>
 
@@ -26,8 +27,9 @@
 </form:form><br><br>
 <c:if test="${cars != null}">
 
-    <form:form method="post" modelAttribute="completeBooking">
-            <table>
+    <form:form method="post" modelAttribute="booking">
+
+        <table>
                 <thead>
                 <tr>
                     <th></th>
@@ -43,7 +45,7 @@
                     <c:forEach var="car" items="${cars}">
                         <tr>
                             <td>
-                                <form:radiobutton path="car" value="${car}" />
+                                <form:radiobutton path="car.id" value="${car.id}" />
                             </td>
                             <td>${car.brand}</td>
                             <td>${car.model}</td>

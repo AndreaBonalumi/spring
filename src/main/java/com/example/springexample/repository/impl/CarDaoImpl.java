@@ -65,7 +65,7 @@ public class CarDaoImpl implements CarDao {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(car);
+            session.saveOrUpdate(car);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
