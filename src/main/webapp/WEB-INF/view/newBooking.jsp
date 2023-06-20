@@ -15,80 +15,56 @@
 </head>
 <body>
 <h1>Prenotazione</h1>
+<div class="container">
+    <form:form action="/springExample_war_exploded/booking/completeBooking" method="get" modelAttribute="bookingRequest">
 
-<form:form action="/springExample_war_exploded/booking/completeBooking" method="get" modelAttribute="bookingRequest">
-    <form:input path="id" hidden="true"/>
-    <label for="start">Data di inizio della prenotazione </label>
-    <form:input id="start" type="date" path="dateBookingStart" name="start"/> <br><br>
+        <form:input path="id" hidden="true"/>
 
-    <label for="end">Data di fine della prenotazione </label>
-    <form:input id="end" type="date" path="dateBookingEnd" name="end"/><br><br>
-    <input type="submit" value="cerca auto disponibili">
-</form:form><br><br>
-<c:if test="${cars != null}">
+        <div class="form-group">
+            <label for="start">Data di inizio della prenotazione </label>
+            <form:input id="start" type="date" path="dateBookingStart" name="start"/> <br><br>
+        </div>
 
-    <form:form method="post" modelAttribute="booking">
+        <div class="form-group">
+            <label for="end">Data di fine della prenotazione </label>
+            <form:input id="end" type="date" path="dateBookingEnd" name="end"/><br><br>
+        </div>
+        <input class="btn btn-primary btn-lg" type="submit" value="cerca auto disponibili">
+    </form:form><br><br>
+    <c:if test="${cars != null}">
 
-        <table>
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Marca</th>
-                    <th>Modello</th>
-                    <th>Colore</th>
-                    <th>Descrizione</th>
-                    <th>Link</th>
-                </tr>
-                </thead>
+        <form:form method="post" modelAttribute="booking">
 
-                <tbody>
-                    <c:forEach var="car" items="${cars}">
-                        <tr>
-                            <td>
-                                <form:radiobutton path="car.id" value="${car.id}" />
-                            </td>
-                            <td>${car.brand}</td>
-                            <td>${car.model}</td>
-                            <td>${car.color}</td>
-                            <td>${car.description}</td>
-                            <td>${car.link}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <input type="submit" value="Prenota">
-    </form:form>
-</c:if>
+            <table>
+                    <thead class="table">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modello</th>
+                        <th scope="col">Colore</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                    </thead>
 
+                    <tbody>
+                        <c:forEach var="car" items="${cars}">
+                            <tr>
+                                <th scope="row">
+                                    <form:radiobutton path="car.id" value="${car.id}" />
+                                </th>
+                                <td>${car.brand}</td>
+                                <td>${car.model}</td>
+                                <td>${car.color}</td>
+                                <td>${car.description}</td>
+                                <td>${car.link}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <input type="submit" value="Prenota">
+        </form:form>
+    </c:if>
+</div>
 </body>
 </html>
-
-
-
-
-
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    table th, table td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    table th {
-        background-color: #f2f2f2;
-    }
-
-    table tr:hover {
-        background-color: #f5f5f5;
-    }
-
-    table td {
-        font-size: 14px;
-    }
-
-</style>

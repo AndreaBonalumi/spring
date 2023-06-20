@@ -9,26 +9,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page session="true" %>
+
+<!DOCTYPE html>
 <html>
 <head>
   <title><tiles:insertAttribute name="titolo" /></title>
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.1.0/css/bootstrap.min.css">
 
-
-
-
 </head>
+
 <body>
-<nav>
-  <div class="topnav">
-
-    <a href="/springExample_war_exploded/home">Home</a>
-    <c:if test="${sessionScope.userLogger.admin}">
-      <a href="/springExample_war_exploded/car/all">Parco auto</a>
-    </c:if>
-    <a href="/springExample_war_exploded/user/profile">Profilo utente</a>
-
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/springExample_war_exploded/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/springExample_war_exploded/car/all">Parco auto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/springExample_war_exploded/user/profile">Profilo</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -38,24 +44,3 @@
 
 </body>
 </html>
-
-<style>
-  .topnav {
-    background-color: #333;
-    overflow: hidden;
-  }
-
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-</style>

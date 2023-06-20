@@ -6,16 +6,20 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.1.0/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
+    <form:form action="home" method="post" modelAttribute="loginRequest">
+        <span>username: </span><form:input id="username" path="username"/> <br><br>
+        <span>password: </span><form:password id="password" path="password"/><br><br>
+        <input type="submit" value="Entra">
+    </form:form>
+    <c:if test="${error != null}">
+        <p style="color: red">${error}</p>
+    </c:if>
+</div>
 
-<form:form action="home" method="post" modelAttribute="loginRequest">
-    <span>username: </span><form:input id="username" path="username"/> <br><br>
-    <span>password: </span><form:password id="password" path="password"/><br><br>
-    <input type="submit" value="Entra">
-</form:form>
-<c:if test="${error != null}">
-    <p style="color: red">${error}</p>
-</c:if>
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>

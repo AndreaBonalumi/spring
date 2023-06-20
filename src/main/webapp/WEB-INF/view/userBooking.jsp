@@ -15,61 +15,38 @@
 
 
 <h1>Prenotazioni di ${userBooking.firstName}</h1>
-
-<c:if test="${bookings != null}">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Data inizio</th>
-            <th>Data fine</th>
-            <th>Marca</th>
-            <th>Modello</th>
-            <th>Stato</th>
-            <th>Azioni</th>
-        </tr>
-        <c:forEach var="tempbooking" items="${bookings}">
+<div class="container">
+    <c:if test="${bookings != null}">
+        <table class="table">
             <tr>
-                <td>${tempbooking.id}</td>
-                <td>${tempbooking.dateBookingStart}</td>
-                <td>${tempbooking.dateBookingEnd}</td>
-                <td>${tempbooking.car.brand}</td>
-                <td>${tempbooking.car.model}</td>
-                <td>${tempbooking.status}</td>
-                <td>
-                    <a href="${userBooking.id}/approve/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione approvata')">Approva</button> </a>
-                    <a href="${userBooking.id}/decline/${tempbooking.id}"><button type="button" onclick="window.alert('prenotazione rifiutata')">Rifiuta</button> </a>
-                </td>
+                <th scope="col">ID</th>
+                <th scope="col">Data inizio</th>
+                <th scope="col">Data fine</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modello</th>
+                <th scope="col">Stato</th>
+                <th scope="col">Azioni</th>
             </tr>
-        </c:forEach>
-    </table>
-</c:if>
+            <c:forEach var="tempbooking" items="${bookings}">
+                <tr>
+                    <th scope="row">${tempbooking.id}</th>
+                    <td>${tempbooking.dateBookingStart}</td>
+                    <td>${tempbooking.dateBookingEnd}</td>
+                    <td>${tempbooking.car.brand}</td>
+                    <td>${tempbooking.car.model}</td>
+                    <td>${tempbooking.status}</td>
+                    <td>
+                        <a href="${userBooking.id}/approve/${tempbooking.id}">
+                            <button class="btn btn-lg btn-primary" type="button" onclick="window.alert('prenotazione approvata')">
+                                Approva</button> </a>
+                        <a href="${userBooking.id}/decline/${tempbooking.id}">
+                            <button class="btn btn-lg btn-danger" type="button" onclick="window.alert('prenotazione rifiutata')">
+                                Rifiuta</button> </a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+</div>
 </body>
 </html>
-
-
-
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    table th, table td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    table th {
-        background-color: #f2f2f2;
-    }
-
-    table tr:hover {
-        background-color: #f5f5f5;
-    }
-
-    table td {
-        font-size: 14px;
-    }
-
-</style>

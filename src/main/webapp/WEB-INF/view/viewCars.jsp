@@ -20,60 +20,34 @@
 <br>
 <a href="manage/-1">Inserisci nuova auto</a>
 
-<!-- <a href=""> Inserici nuova macchina </a> -->
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Marca</th>
-        <th>Modello</th>
-        <th>Colore</th>
-        <th>Descrizione</th>
-        <th>Link</th>
-        <th>Azioni</th>
-    </tr>
-    <c:forEach var="macchina" items="${cars}">
-        <tr onclick="">
-            <td>${macchina.id}</td>
-            <td>${macchina.brand}</td>
-            <td>${macchina.model}</td>
-            <td>${macchina.color}</td>
-            <td>${macchina.description}</td>
-            <td>${macchina.link}</td>
-            <td>
-                <a href="manage/${macchina.id}"><button type="button">Modifica</button></a>
-                <a href="delete/${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
-            </td>
 
+<div class="container">
+    <table class="table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modello</th>
+            <th scope="col">Colore</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Link</th>
+            <th scope="col">Azioni</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="macchina" items="${cars}">
+            <tr onclick="">
+                <th scope="row">${macchina.id}</th>
+                <td>${macchina.brand}</td>
+                <td>${macchina.model}</td>
+                <td>${macchina.color}</td>
+                <td>${macchina.description}</td>
+                <td>${macchina.link}</td>
+                <td>
+                    <a href="manage/${macchina.id}"><button type="button">Modifica</button></a>
+                    <a href="delete/${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
+                </td>
+
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
-
-
-
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    table th, table td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    table th {
-        background-color: #f2f2f2;
-    }
-
-    table tr:hover {
-        background-color: #f5f5f5;
-    }
-
-    table td {
-        font-size: 14px;
-    }
-
-</style>

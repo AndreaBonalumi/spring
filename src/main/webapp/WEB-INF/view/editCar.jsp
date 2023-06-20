@@ -14,18 +14,32 @@
 </head>
 <body>
 <h1>Modifica ${carRequest.brand} ${carRequest.model}</h1><br>
+<div class="container">
+    <form:form method="post" modelAttribute="carRequest">
 
-<form:form method="post" modelAttribute="carRequest">
+        <form:input path="id" hidden="true" />
 
-    <form:input path="id" hidden="true" />
-    <span>Marca: </span> <form:input path="brand" placeholder="color" /><br><br>
-    <span>Modello: </span> <form:input path="model" placeholder="color" /><br><br>
-    <span>Colore: </span> <form:input path="color" placeholder="color" /><br><br>
-    <span>Anno: </span> <form:input path="year" placeholder="color" /><br><br>
-    <span>Descrizione: </span> <form:input path="description" placeholder="description" /><br><br>
-    <span>Link: </span> <form:input path="link" placeholder="link" /><br><br>
-    <input type="submit" value="Salva">
+        <div class="from-group">
+            <span>Marca: </span> <form:input path="brand" placeholder="color" /><br><br>
+        </div>
+        <div class="from-group">
+            <span>Modello: </span> <form:input path="model" placeholder="color" /><br><br>
+        </div>
+        <div class="from-group">
+            <span>Colore: </span> <form:input path="color" placeholder="color" /><br><br>
+        </div>
+        <div class="from-group">
+            <span>Anno: </span> <form:input path="year" placeholder="color" /><br><br>
+        </div>
+        <div class="from-group">
+            <span>Descrizione: </span> <form:input path="description" placeholder="description" /><br><br>
+        </div>
+        <div class="from-group">
+            <span>Link: </span> <form:input path="link" placeholder="link" /><br><br>
+        </div>
+        <input type="submit" value="Salva">
 
-</form:form>
+    </form:form>
+</div>
 </body>
 </html>
