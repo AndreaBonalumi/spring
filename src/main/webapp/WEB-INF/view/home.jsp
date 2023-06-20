@@ -47,9 +47,9 @@
                     <td>
                         <c:if test="${booking.status != 2 && today < booking.dateBookingStart.minusDays(2)}">
 
-                            <a href="booking/manage/${booking.id}"><button type="button">Modifica</button></a>
+                            <a href="booking/manage/${booking.id}"><button class="btn btn-primary" type="button">Modifica</button></a>
                             <a href="booking/delete/${booking.id}">
-                                <button type="button" onclick="window.alert('prenotazione cancellalta')">
+                                <button class="btn btn-danger" type="button" onclick="window.alert('prenotazione cancellalta')">
                                     Cancella
                                 </button></a>
 
@@ -96,8 +96,12 @@
                 <td>${tempUser.nPatente}</td>
                 <td>${tempUser.admin}</td>
                 <td>
-                    <a href="/springExample_war_exploded/user/manage/${tempUser.id}"><button type="button">Modifica</button></a>
-                    <a href="/springExample_war_exploded/user/delete/${tempUser.id}"><button type="button" onclick="window.alert('Utente cancellato')">Cancella</button> </a>
+                    <a href="/springExample_war_exploded/user/manage/${tempUser.id}">
+                        <button class="btn btn-primary" type="button">
+                            Modifica</button></a>
+                    <a href="/springExample_war_exploded/user/delete/${tempUser.id}">
+                        <button class="btn btn-danger" type="button" onclick="window.alert('Utente cancellato')">
+                            Cancella</button> </a>
                 </td>
 
             </tr>

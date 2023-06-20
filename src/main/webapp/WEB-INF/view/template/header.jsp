@@ -12,6 +12,12 @@
 <html>
 <head>
   <title><tiles:insertAttribute name="titolo" /></title>
+
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.1.0/css/bootstrap.min.css">
+
+
+
+
 </head>
 <body>
 <nav>
@@ -27,6 +33,9 @@
 </nav>
 
 <tiles:insertAttribute name="content" />
+
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>
 
