@@ -34,7 +34,7 @@
         <p>Numero patente: ${user.nPatente}</p><br>
     </div>
 
-    <a href="manage/${user.id}"><button type="button">Modifica i tuoi dati</button></a>
+    <a href="manage/${user.id}"><button class="btn btn-lg btn-primary" type="button">Modifica i tuoi dati</button></a>
 </div>
 </body>
 </html>

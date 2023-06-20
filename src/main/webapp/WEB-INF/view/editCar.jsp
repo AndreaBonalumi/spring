@@ -37,7 +37,7 @@
         <div class="from-group">
             <span>Link: </span> <form:input path="link" placeholder="link" /><br><br>
         </div>
-        <input type="submit" value="Salva">
+        <input class="btn btn-primary btn-lg" type="submit" value="Salva">
 
     </form:form>
 </div>

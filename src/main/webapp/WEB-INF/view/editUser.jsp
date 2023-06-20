@@ -34,7 +34,7 @@
     <form:errors path="lastName" cssClass="error" /><br>
     <form:errors path="password" cssClass="error" /><br>
     <form:errors path="nPatente" cssClass="error" /><br>
-    <input type="submit" value="Salva" />
+    <input class="btn btn-lg btn-primary" type="submit" value="Salva" />
 
   </form:form>
 </div>

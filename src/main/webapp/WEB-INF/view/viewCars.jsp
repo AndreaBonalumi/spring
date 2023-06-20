@@ -41,8 +41,12 @@
                 <td>${macchina.description}</td>
                 <td>${macchina.link}</td>
                 <td>
-                    <a href="manage/${macchina.id}"><button type="button">Modifica</button></a>
-                    <a href="delete/${macchina.id}"><button onclick="window.alert('elemento cancellato')" type="button">Cancella</button></a>
+                    <a href="manage/${macchina.id}">
+                        <button class="btn btn-primary" type="button">
+                            Modifica</button></a>
+                    <a href="delete/${macchina.id}">
+                        <button class="btn btn-danger" onclick="window.alert('elemento cancellato')" type="button">
+                            Cancella</button></a>
                 </td>
 
             </tr>

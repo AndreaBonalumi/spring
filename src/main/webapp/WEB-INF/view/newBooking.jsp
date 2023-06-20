@@ -62,7 +62,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <input type="submit" value="Prenota">
+                <input class="btn btn-primary btn-lg" type="submit" value="Prenota">
         </form:form>
     </c:if>
 </div>

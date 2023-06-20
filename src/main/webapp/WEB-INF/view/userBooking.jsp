@@ -37,10 +37,10 @@
                     <td>${tempbooking.status}</td>
                     <td>
                         <a href="${userBooking.id}/approve/${tempbooking.id}">
-                            <button class="btn btn-lg btn-primary" type="button" onclick="window.alert('prenotazione approvata')">
+                            <button class="btn btn-primary" type="button" onclick="window.alert('prenotazione approvata')">
                                 Approva</button> </a>
                         <a href="${userBooking.id}/decline/${tempbooking.id}">
-                            <button class="btn btn-lg btn-danger" type="button" onclick="window.alert('prenotazione rifiutata')">
+                            <button class="btn btn-danger" type="button" onclick="window.alert('prenotazione rifiutata')">
                                 Rifiuta</button> </a>
                     </td>
                 </tr>
