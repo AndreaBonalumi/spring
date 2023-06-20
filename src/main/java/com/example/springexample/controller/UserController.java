@@ -7,9 +7,11 @@ import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -83,10 +85,15 @@ public class UserController {
     }
 
     @PostMapping("manage/{id}")
-    public String manageUser(@ModelAttribute("user") User user) {
+    public String manageUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
         user.setAdmin(false);
+        user.setEmail(user.getFirstName() + "." + user.getLastName() + "@si2001.it");
         user.setCreated(LocalDate.now());
+
+        if(bindingResult.hasErrors())
+            return "editUser";
+
         userService.manageUser(user);
 
         return "redirect:/home";

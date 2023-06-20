@@ -1,6 +1,10 @@
 package com.example.springexample.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -13,25 +17,27 @@ public class User implements Serializable {
     private int id;
 
 
+    @NotBlank(message = "richiesto l'username")
     @Column(unique = true)
     private String username;
+    @NotBlank(message = "richiesta la password")
+    @Pattern(regexp = ".*\\d.*")
     private String password;
+    @NotBlank(message = "richiesto il nome")
     private String firstName;
-
+    @NotBlank(message = "richiesto il cognome")
     private String lastName;
-
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
-
     private boolean admin;
-
     @Column(unique = true)
     private String email;
 
     @Column(name = "bd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-
     @Column(unique = true)
+    @Pattern(regexp = "[a-zA-Z]", message = "è possibile l'inserimento di sole lettere")
     private String nPatente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
