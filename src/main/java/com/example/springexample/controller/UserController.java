@@ -5,6 +5,7 @@ import com.example.springexample.entity.User;
 import com.example.springexample.service.BookingService;
 import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,8 @@ public class UserController {
     UserService userService;
     @Autowired
     BookingService bookingService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "profile", method = RequestMethod.GET)
     public String getProfileUser(HttpSession session, Model model) {
@@ -85,14 +88,18 @@ public class UserController {
     }
 
     @PostMapping("manage/{id}")
-    public String manageUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String manageUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
 
         user.setAdmin(false);
         user.setEmail(user.getFirstName() + "." + user.getLastName() + "@si2001.it");
         user.setCreated(LocalDate.now());
 
-        if(bindingResult.hasErrors())
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
             return "editUser";
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userService.manageUser(user);
 

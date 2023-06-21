@@ -2,6 +2,7 @@ package com.example.springexample.config;
 
 import com.example.springexample.entity.Booking;
 import com.example.springexample.entity.Car;
+import com.example.springexample.entity.Logins;
 import com.example.springexample.entity.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -35,6 +36,7 @@ public class HibernateConfig {
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Booking.class);
                 configuration.addAnnotatedClass(Car.class);
+                configuration.addAnnotatedClass(Logins.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 

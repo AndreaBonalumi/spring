@@ -47,4 +47,7 @@
 		<put-attribute name="content" value="/WEB-INF/view/editUser.jsp" />
 	</definition>
 
+	<definition name="login" template="/WEB-INF/view/login.jsp" />
+
+
 </tiles-definitions>
