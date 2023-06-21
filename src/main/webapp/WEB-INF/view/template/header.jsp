@@ -27,9 +27,11 @@
         <li class="nav-item active">
           <a class="nav-link" href="/springExample_war_exploded/home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/springExample_war_exploded/car/all">Parco auto</a>
-        </li>
+        <c:if test="${sessionScope.userLogger.admin}">
+          <li class="nav-item">
+            <a class="nav-link" href="/springExample_war_exploded/car/all">Parco auto</a>
+          </li>
+        </c:if>
         <li class="nav-item">
           <a class="nav-link" href="/springExample_war_exploded/user/profile">Profilo</a>
         </li>
