@@ -9,6 +9,7 @@ public interface UserDao {
 
     List<User> getAllUser();
     User getUserById(int id);
+    User getUserByUsername(String username);
     User getUserByUsPw(String username, String password);
     List<User> searchUsers(String field, String value);
     void deleteUser(User user);

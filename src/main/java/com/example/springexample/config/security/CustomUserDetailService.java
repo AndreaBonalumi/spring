@@ -24,7 +24,7 @@ public class CustomUserDetailService implements UserDetailsService {
         String[] loginString = StringUtils.split(s, "@");
 
         if(loginString == null || loginString.length != 2) {
-            throw new UsernameNotFoundException("inserisci il nome utente e la password");
+            throw new UsernameNotFoundException("inserisci il nome utente");
         }
 
         String username = loginString[0];
@@ -32,5 +32,15 @@ public class CustomUserDetailService implements UserDetailsService {
 
         User user = userService.getUserByLogin(username, password);
 
+        if (user == null) {
+            throw new UsernameNotFoundException("username o password errati");
+        }
+        org.springframework.security.core.userdetails.User.UserBuilder builder;
+
+        builder = org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
+        builder.roles(user.isAdmin() ? "ADMIN" : "USER");
+        builder.password(user.getPassword());
+
+        return builder.build();
     }
 }

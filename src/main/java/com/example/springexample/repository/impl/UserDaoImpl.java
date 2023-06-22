@@ -51,6 +51,21 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserByUsername(String username) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+            Root<User> root = criteriaQuery.from(User.class);
+            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+
+            Query<User> query = session.createQuery(criteriaQuery);
+            return query.getSingleResult();
+
+        }
+    }
+
+    @Override
     public User getUserByUsPw(String username, String password) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
 

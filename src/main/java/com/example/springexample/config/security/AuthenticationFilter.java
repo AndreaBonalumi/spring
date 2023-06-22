@@ -29,6 +29,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         username = (username == null) ? "" : username;
         password = (password == null) ? "" : password;
 
-        return new UsernamePasswordAuthenticationToken(username, password);
+        String loginString = username + "@" + password;
+
+        return new UsernamePasswordAuthenticationToken(loginString, password);
     }
 }
