@@ -37,7 +37,7 @@ public class User implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     @Column(unique = true)
-    @Pattern(regexp = "[a-zA-Z]", message = "è possibile l'inserimento di sole lettere")
+    @Pattern(regexp = "[a-zA-Z]+", message = "come patente è possibile l'inserimento di sole lettere")
     private String nPatente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)

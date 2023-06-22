@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
 <head>
@@ -17,7 +18,7 @@
 <div class="container">
   <form:form method="post" modelAttribute="userRequest">
 
-    <form:input path="id" hidden="true" />
+    <form:input path="id" hidden="true"  />
     <div class="form-group">
     <span>Nome: </span> <form:input path="firstName" placeholder="Nome" /></div><br><br>
     <div class="form-group">

@@ -58,7 +58,7 @@ public class UserController {
         }
         bookingService.manageBooking(booking);
 
-        return "redirect:user/detail/" + id;
+        return "redirect:/user/detail/" + id;
     }
 
     @GetMapping("filter")
@@ -68,7 +68,7 @@ public class UserController {
 
         model.addAttribute("users", users);
 
-        return "redirect:/home";
+        return "home";
     }
 
     @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
@@ -85,16 +85,21 @@ public class UserController {
     }
 
     @PostMapping("manage/{id}")
-    public String manageUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-
-        user.setAdmin(false);
-        user.setEmail(user.getFirstName() + "." + user.getLastName() + "@si2001.it");
-        user.setCreated(LocalDate.now());
+    public String manageUser(@Valid @ModelAttribute("userRequest") User userRequest, BindingResult bindingResult, HttpSession session) {
 
         if(bindingResult.hasErrors())
             return "editUser";
+        userRequest.setAdmin(false);
+        userRequest.setEmail(userRequest.getFirstName() + "." + userRequest.getLastName() + "@si2001.it");
+        userRequest.setCreated(LocalDate.now());
+        User userLogger = (User) session.getAttribute("userLogger");
+        if (userRequest.getId() == userLogger.getId()) {
+            session.removeAttribute("userLogger");
+            session.setAttribute("userLogger", userRequest);
+        }
 
-        userService.manageUser(user);
+
+        userService.manageUser(userRequest);
 
         return "redirect:/home";
     }

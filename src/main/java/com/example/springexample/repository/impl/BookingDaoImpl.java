@@ -92,12 +92,16 @@ public class BookingDaoImpl implements BookingDao {
                             criteriaBuilder.between(subqueryRoot.get("dateBookingStart"), start, end),
                             criteriaBuilder.between(subqueryRoot.get("dateBookingEnd"), start, end),
                             criteriaBuilder.and(
-                                    criteriaBuilder.lessThan(subqueryRoot.get("dateBookingStart"), end),
-                                    criteriaBuilder.not(criteriaBuilder.lessThan(subqueryRoot.get("dateBookingStart"), start))
+                                    criteriaBuilder.lessThanOrEqualTo(subqueryRoot.get("dateBookingStart"), end),
+                                    criteriaBuilder.not(criteriaBuilder.lessThanOrEqualTo(subqueryRoot.get("dateBookingStart"), start))
                             ),
                             criteriaBuilder.and(
-                                    criteriaBuilder.lessThan(subqueryRoot.get("dateBookingEnd"), end),
-                                    criteriaBuilder.not(criteriaBuilder.lessThan(subqueryRoot.get("dateBookingEnd"), start))
+                                    criteriaBuilder.lessThanOrEqualTo(subqueryRoot.get("dateBookingEnd"), end),
+                                    criteriaBuilder.not(criteriaBuilder.lessThanOrEqualTo(subqueryRoot.get("dateBookingEnd"), start))
+                            ),
+                            criteriaBuilder.and(
+                                    criteriaBuilder.lessThanOrEqualTo(subqueryRoot.get("dateBookingStart"), start),
+                                    criteriaBuilder.greaterThanOrEqualTo(subqueryRoot.get("dateBookingEnd"), end)
                             )
 
                     )
@@ -116,7 +120,11 @@ public class BookingDaoImpl implements BookingDao {
         Transaction transaction = null;
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(booking);
+            Booking saveBooking = getBookingById(booking.getId());
+            if (saveBooking != null)
+                session.merge(booking);
+            else
+                session.save(booking);
             transaction.commit();
 
         } catch (Exception e) {
