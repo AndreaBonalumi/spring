@@ -35,8 +35,8 @@
 
         <form:form method="post" modelAttribute="booking">
 
-            <table>
-                    <thead class="table">
+            <table class="table">
+                    <thead>
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Marca</th>

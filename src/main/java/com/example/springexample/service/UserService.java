@@ -12,4 +12,6 @@ public interface UserService {
     User getUserByLogin(String username, String password);
     void manageUser(User user);
     void deleteUser(User user);
+    boolean thereIsAdmin();
+    void saveNewAdmin();
 }

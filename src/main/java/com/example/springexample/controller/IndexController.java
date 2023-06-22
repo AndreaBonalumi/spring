@@ -41,6 +41,11 @@ public class IndexController {
 	}
 	@RequestMapping("login")
 	public String login() {
+
+		if (!userService.thereIsAdmin()) {
+			userService.saveNewAdmin();
+		}
+
 		return "login";
 	}
 

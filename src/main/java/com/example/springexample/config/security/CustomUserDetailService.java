@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Temporal;
-
 @Service("customUserDetailService")
 public class CustomUserDetailService implements UserDetailsService {
 

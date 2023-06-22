@@ -44,4 +44,14 @@ public class UserServiceImpl implements UserService{
     public void deleteUser(User user) {
         userDao.deleteUser(user);
     }
+
+    @Override
+    public boolean thereIsAdmin() {
+        return userDao.thereIsAdmin();
+    }
+
+    @Override
+    public void saveNewAdmin() {
+        userDao.saveNewAdmin();
+    }
 }

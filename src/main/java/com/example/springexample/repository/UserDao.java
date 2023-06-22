@@ -14,5 +14,7 @@ public interface UserDao {
     List<User> searchUsers(String field, String value);
     void deleteUser(User user);
     void manageUser(User user);
+    boolean thereIsAdmin();
+    void saveNewAdmin();
 
 }
