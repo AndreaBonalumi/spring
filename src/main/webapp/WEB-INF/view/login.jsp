@@ -18,7 +18,7 @@
 <body>
 
 <div class="container">
-  <c:url var="loginUrl" value="/processLogin" />
+  <c:url var="loginUrl" value="/home" />
 
   <form action="${loginUrl}" method="post">
 
