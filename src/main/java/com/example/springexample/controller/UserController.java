@@ -78,7 +78,7 @@ public class UserController {
     public String manageUserRequest(@PathVariable("id") int id, Model model) {
 
         User user = new User();
-        if(userService.getUserById(id) != null) {
+        if (userService.getUserById(id) != null) {
             user = userService.getUserById(id);
         }
 
@@ -88,11 +88,12 @@ public class UserController {
     }
 
     @PostMapping("manage/{id}")
-    public String manageUser(@Valid @ModelAttribute("userRequest") User userRequest, BindingResult bindingResult, Model model) {
+    public String manageUser(@Valid @ModelAttribute("userRequest") User userRequest, BindingResult bindingResult, HttpSession session, Model model) {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("user", userRequest);
             return "editUser";
+        }
         userRequest.setAdmin(false);
         userRequest.setEmail(userRequest.getFirstName() + "." + userRequest.getLastName() + "@si2001.it");
         userRequest.setCreated(LocalDate.now());
@@ -102,7 +103,7 @@ public class UserController {
             session.setAttribute("userLogger", userRequest);
         }
 
-        userRequest.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
         userService.manageUser(userRequest);
 
@@ -110,7 +111,7 @@ public class UserController {
     }
 
     @GetMapping("delete/{id}")
-    public String deleteUser(@PathVariable("id") int id){
+    public String deleteUser( @PathVariable("id") int id){
 
         User user = userService.getUserById(id);
         userService.deleteUser(user);

@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +36,10 @@ public class IndexController {
 	@RequestMapping
 	public String loginRequest(Model model) {
 
-		User user = new User();
-		model.addAttribute("loginRequest", user);
-		
+		if (!userService.thereIsAdmin()) {
+			userService.saveNewAdmin();
+		}
+
 		return "index";
 	}
 	@RequestMapping("login")
@@ -46,7 +49,7 @@ public class IndexController {
 			userService.saveNewAdmin();
 		}
 
-		return "login";
+		return "index";
 	}
 
 	@GetMapping("home")
@@ -66,12 +69,12 @@ public class IndexController {
 	}
 
 	@PostMapping("home")
-	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model, HttpSession session) {
-		/*User userLogin = userService.getUserByLogin(user.getUsername(), user.getPassword());
+	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		User userLogin = userService.getUserByUsername(userDetails.getUsername());
 
 		if (userLogin != null) {
-			session.setAttribute("userLogger", userLogin);
-
 			model.addAttribute("userLogger", userLogin);
 			if (userLogin.isAdmin()) {
 				Object filter = new Object();
@@ -81,17 +84,15 @@ public class IndexController {
 			} else {
 				List<Booking> bookings = bookingService.selBookingsByIdUser(userLogin.getId());
 				model.addAttribute("bookings", bookings);
-			}*/
+			}
 
-		return "home";
+			return "home";
 
-		/*} else {
-			model.addAttribute("error", "Username o password non esistenti");
-			return "index";
-		}*/
+		} else
+			return null;
 	}
 
-	@PostMapping("login")
+	@PostMapping("logout")
 	public String getLoginPost(HttpServletRequest request, HttpServletResponse response) {
 		String[] test = request.getParameterValues("logout");
 
@@ -114,7 +115,7 @@ public class IndexController {
 				persistentTokenRepository.removeUserTokens(test[1]);
 			}
 		}
-		return "login";
+		return "redirect:/login?logout";
 	}
 
 }

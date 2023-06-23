@@ -4,6 +4,8 @@ import com.example.springexample.entity.User;
 import com.example.springexample.repository.UserDao;
 import com.example.springexample.repository.impl.UserDaoImpl;
 import com.example.springexample.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
     UserDao userDao = new UserDaoImpl();
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -52,6 +57,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void saveNewAdmin() {
-        userDao.saveNewAdmin();
+        userDao.saveNewAdmin(encoder.encode("admin1"));
     }
 }

@@ -15,6 +15,6 @@ public interface UserDao {
     void deleteUser(User user);
     void manageUser(User user);
     boolean thereIsAdmin();
-    void saveNewAdmin();
+    void saveNewAdmin(String password);
 
 }

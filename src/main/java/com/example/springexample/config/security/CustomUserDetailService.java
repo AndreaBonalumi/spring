@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 @Service("customUserDetailService")
 public class CustomUserDetailService implements UserDetailsService {
@@ -18,17 +17,9 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        String[] loginString = StringUtils.split(s, "@");
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        if(loginString == null || loginString.length != 2) {
-            throw new UsernameNotFoundException("inserisci il nome utente");
-        }
-
-        String username = loginString[0];
-        String password = loginString[1];
-
-        User user = userService.getUserByLogin(username, password);
+        User user = userService.getUserByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("username o password errati");
@@ -36,7 +27,12 @@ public class CustomUserDetailService implements UserDetailsService {
         org.springframework.security.core.userdetails.User.UserBuilder builder;
 
         builder = org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
-        builder.roles(user.isAdmin() ? "ADMIN" : "USER");
+        builder.disabled(false);
+        if (user.isAdmin()) {
+            builder.authorities("ROLE_ADMIN");
+        } else {
+            builder.authorities("ROLE_USER");
+        }
         builder.password(user.getPassword());
 
         return builder.build();

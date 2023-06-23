@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 
 <!DOCTYPE html>
@@ -27,11 +28,11 @@
         <li class="nav-item active">
           <a class="nav-link" href="/springExample_war_exploded/home">Home</a>
         </li>
-        <c:if test="${sessionScope.userLogger.admin}">
+        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
           <li class="nav-item">
             <a class="nav-link" href="/springExample_war_exploded/car/all">Parco auto</a>
           </li>
-        </c:if>
+        </sec:authorize>
         <li class="nav-item">
           <a class="nav-link" href="/springExample_war_exploded/user/profile">Profilo</a>
         </li>

@@ -147,14 +147,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void saveNewAdmin() {
+    public void saveNewAdmin(String password) {
         User user = new User();
         user.setAdmin(true);
         user.setId(-18);
         user.setFirstName("admin");
         user.setLastName("admin");
         user.setUsername("admin");
-        user.setPassword("admin");
+        user.setPassword(password);
         user.setCreated(LocalDate.now());
         user.setEmail("admin@si2001.it");
         user.setBirthday(LocalDate.now());

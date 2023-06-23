@@ -107,12 +107,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(ADMIN_MATCHER).access("hasRole('ADMIN')")
                 .antMatchers("/booking/**").access("hasAnyRole('USER', 'ADMIN')")
-                .antMatchers("/login").permitAll()
-                .antMatchers("/**").not().hasRole("ANONYMOUS")
+                .antMatchers("/").permitAll()
+                //.antMatchers("/**").not().hasRole("ANONYMOUS")
                 .and()
-                //.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .formLogin()
-                        .loginPage("/login")
+                        .loginPage("/")
+                        .loginProcessingUrl("/home")
                         .successForwardUrl("/home")
                         .failureUrl("/login?fail")
                             .usernameParameter("username")
@@ -125,10 +126,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/login?logout");
     }
 
-    public AuthenticationFilter authenticationFilter() throws Exception {
-        AuthenticationFilter filter = new AuthenticationFilter();
+    public UsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
+        UsernamePasswordAuthenticationFilter filter = new UsernamePasswordAuthenticationFilter();
 
-        //filter.setAuthenticationManager(authenticationManagerBean());
+        filter.setAuthenticationManager(authenticationManagerBean());
         filter.setAuthenticationFailureHandler(failureHandler());
         filter.setAuthenticationSuccessHandler(authenticationSuccessHandler());
         filter.setRememberMeServices(customRememberMeService());
