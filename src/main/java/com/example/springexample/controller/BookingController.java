@@ -74,7 +74,7 @@ public class BookingController {
 
             return "redirect:/home";
         }
-        return "redirect:/login?fail";
+        return "redirect:/login?sessionError";
     }
 
     @GetMapping("delete/{id}")

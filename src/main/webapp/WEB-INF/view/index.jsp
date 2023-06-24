@@ -40,6 +40,12 @@
             </div>
         </c:if>
 
+        <c:if test="${param.sessionError != null}">
+            <div class="alert alert-success">
+                <p>Errore, per favore autenticati di nuovo</p>
+            </div>
+        </c:if>
+
         <div class="form-group">
             <label for="username">Username: </label>
             <input id="username" type="text" name="username" placeholder="username" required />

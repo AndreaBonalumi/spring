@@ -123,7 +123,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .accessDeniedPage("/login?authDecline")
                 .and()
                     .logout()
-                    .logoutUrl("/login?logout");
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .deleteCookies("JSESSIONID");
     }
 
     public UsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {

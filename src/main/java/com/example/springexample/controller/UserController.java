@@ -41,7 +41,7 @@ public class UserController {
             model.addAttribute("user", userLogin);
             return "profileUser";
         }
-        return "redirect:/login?fail";
+        return "redirect:/login?sessionError";
     }
 
     @GetMapping("detail/{id}")

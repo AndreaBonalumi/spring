@@ -74,7 +74,7 @@ public class IndexController {
 
 			return "home";
 		}
-		return "redirect:/login?fail";
+		return "redirect:/login?sessionError";
 	}
 
 	@PostMapping("home")
@@ -106,6 +106,11 @@ public class IndexController {
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		String[] test = request.getParameterValues("logout");
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
 
 		if (test != null) {
 			Cookie cookieWithSlash = new Cookie("JSESSIONID", null);
