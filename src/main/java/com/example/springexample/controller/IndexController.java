@@ -100,7 +100,7 @@ public class IndexController {
 				return "home";
 			}
 		}
-		return "redirect:/login?fail";
+		return "redirect:/login?sessionError";
 	}
 
 	@GetMapping("logout")

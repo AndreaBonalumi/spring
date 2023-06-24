@@ -41,7 +41,7 @@
         </c:if>
 
         <c:if test="${param.sessionError != null}">
-            <div class="alert alert-success">
+            <div class="alert alert-danger">
                 <p>Errore, per favore autenticati di nuovo</p>
             </div>
         </c:if>
