@@ -38,6 +38,7 @@
         </li>
       </ul>
     </div>
+    <a class="nav-link" href="/springExample_war_exploded/logout">Logout</a>
   </div>
 </nav>
 

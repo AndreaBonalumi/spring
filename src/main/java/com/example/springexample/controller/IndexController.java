@@ -103,8 +103,8 @@ public class IndexController {
 		return "redirect:/login?fail";
 	}
 
-	@PostMapping("logout")
-	public String getLoginPost(HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		String[] test = request.getParameterValues("logout");
 
 		if (test != null) {
