@@ -16,11 +16,11 @@
 </head>
 <body>
 <br/>
-<h1>Benvenuto <c:out value="${sessionScope.userLogger.firstName}" /></h1>
+<h1>Benvenuto <c:out value="${userLogger.firstName}" /></h1>
 
 <br><br>
 <div class="container">
-    <c:if test="${not sessionScope.userLogger.admin}">
+    <c:if test="${not userLogger.admin}">
         <h4>Le tue prenotazioni:</h4> <br><br>
         <a href="booking/manage/-1">
             Nuova prenotazione</a> <br>
@@ -62,7 +62,7 @@
         </table>
     </c:if>
 
-    <c:if test="${sessionScope.userLogger.admin}">
+    <c:if test="${userLogger.admin}">
         <h4>Lista utenti:</h4> <br><br>
         <form action="/springExample_war_exploded/user/filter" method="get">
             <label for="filter">Filtra: </label>

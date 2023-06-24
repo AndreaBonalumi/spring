@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -53,32 +54,17 @@ public class IndexController {
 	}
 
 	@GetMapping("home")
-	public String viewHome(Model model, HttpSession session){
+	public String viewHome(Model model){
 
-		User user = (User) session.getAttribute("userLogger");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String username = userDetails.getUsername();
+			User userLogin = userService.getUserByUsername(username);
 
-		if (user.isAdmin()) {
-			List<User> users = userService.getAllUsers();
-			model.addAttribute("users", users);
-		} else {
-			List<Booking> bookings = bookingService.selBookingsByIdUser(user.getId());
-			model.addAttribute("bookings", bookings);
-		}
-
-		return "home";
-	}
-
-	@PostMapping("home")
-	public String loginResponse(@ModelAttribute("loginRequest") User user, Model model) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		User userLogin = userService.getUserByUsername(userDetails.getUsername());
-
-		if (userLogin != null) {
 			model.addAttribute("userLogger", userLogin);
+
 			if (userLogin.isAdmin()) {
-				Object filter = new Object();
-				model.addAttribute("filter", filter);
 				List<User> users = userService.getAllUsers();
 				model.addAttribute("users", users);
 			} else {
@@ -87,9 +73,34 @@ public class IndexController {
 			}
 
 			return "home";
+		}
+		return "redirect:/login?fail";
+	}
 
-		} else
-			return null;
+	@PostMapping("home")
+	public String loginResponse(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String username = userDetails.getUsername();
+			User userLogin = userService.getUserByUsername(username);
+
+			if (userLogin != null) {
+				model.addAttribute("userLogger", userLogin);
+				if (userLogin.isAdmin()) {
+					Object filter = new Object();
+					model.addAttribute("filter", filter);
+					List<User> users = userService.getAllUsers();
+					model.addAttribute("users", users);
+				} else {
+					List<Booking> bookings = bookingService.selBookingsByIdUser(userLogin.getId());
+					model.addAttribute("bookings", bookings);
+				}
+
+				return "home";
+			}
+		}
+		return "redirect:/login?fail";
 	}
 
 	@PostMapping("logout")

@@ -7,6 +7,9 @@ import com.example.springexample.service.BookingService;
 import com.example.springexample.service.CarService;
 import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,16 +60,21 @@ public class BookingController {
         return "newBooking";
     }
     @PostMapping("completeBooking")
-    public String insertBooking(@ModelAttribute("booking") Booking booking,
-                                HttpSession session) {
+    public String insertBooking(@ModelAttribute("booking") Booking booking) {
 
-        booking.setCar(carService.getCarById(booking.getCar().getId()));
-        booking.setStatus(0);
-        User user = (User) session.getAttribute("userLogger");
-        booking.setUser(userService.getUserById(user.getId()));
-        bookingService.manageBooking(booking);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String username = userDetails.getUsername();
+            User userLogin = userService.getUserByUsername(username);
+            booking.setCar(carService.getCarById(booking.getCar().getId()));
+            booking.setStatus(0);
+            booking.setUser(userService.getUserById(userLogin.getId()));
+            bookingService.manageBooking(booking);
 
-        return "redirect:/home";
+            return "redirect:/home";
+        }
+        return "redirect:/login?fail";
     }
 
     @GetMapping("delete/{id}")

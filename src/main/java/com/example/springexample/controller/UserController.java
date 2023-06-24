@@ -5,6 +5,9 @@ import com.example.springexample.entity.User;
 import com.example.springexample.service.BookingService;
 import com.example.springexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +31,17 @@ public class UserController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "profile", method = RequestMethod.GET)
-    public String getProfileUser(HttpSession session, Model model) {
+    public String getProfileUser(Model model) {
 
-        User user = (User) session.getAttribute("userLogger");
-        model.addAttribute("user", user);
-        return "profileUser";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String username = userDetails.getUsername();
+            User userLogin = userService.getUserByUsername(username);
+            model.addAttribute("user", userLogin);
+            return "profileUser";
+        }
+        return "redirect:/login?fail";
     }
 
     @GetMapping("detail/{id}")
@@ -88,7 +97,7 @@ public class UserController {
     }
 
     @PostMapping("manage/{id}")
-    public String manageUser(@Valid @ModelAttribute("userRequest") User userRequest, BindingResult bindingResult, HttpSession session, Model model) {
+    public String manageUser(@Valid @ModelAttribute("userRequest") User userRequest, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userRequest);
@@ -97,11 +106,6 @@ public class UserController {
         userRequest.setAdmin(false);
         userRequest.setEmail(userRequest.getFirstName() + "." + userRequest.getLastName() + "@si2001.it");
         userRequest.setCreated(LocalDate.now());
-        User userLogger = (User) session.getAttribute("userLogger");
-        if (userRequest.getId() == userLogger.getId()) {
-            session.removeAttribute("userLogger");
-            session.setAttribute("userLogger", userRequest);
-        }
 
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
