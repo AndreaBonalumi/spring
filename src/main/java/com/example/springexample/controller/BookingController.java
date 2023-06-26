@@ -29,6 +29,7 @@ public class BookingController {
 
     @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
     public String newBooking(@PathVariable("id") int id, Model model) {
+        model.addAttribute("id", id);
         Booking booking = null;
         if (id == -1) {
             booking = new Booking();

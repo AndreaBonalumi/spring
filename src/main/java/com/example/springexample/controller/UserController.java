@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
@@ -86,6 +85,7 @@ public class UserController {
     @RequestMapping(value = "manage/{id}", method = RequestMethod.GET)
     public String manageUserRequest(@PathVariable("id") int id, Model model) {
 
+        model.addAttribute("id", id);
         User user = new User();
         if (userService.getUserById(id) != null) {
             user = userService.getUserById(id);

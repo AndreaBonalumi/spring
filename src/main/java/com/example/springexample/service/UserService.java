@@ -1,6 +1,7 @@
 package com.example.springexample.service;
 
 import com.example.springexample.entity.User;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
